@@ -1,0 +1,48 @@
+
+<!-- <div>Asyn data: {{mydate$|async}}</div> -->
+<div class="p-4" [class.d-none]="!datareceived">
+    <table class="table" style="margin-top: 20px; width:100%; border:solid 5 black">
+      <thead>
+        <tr>
+          <td style="padding: 5px;">
+            Bill Id
+          </td>
+          <td style="padding: 5px;">
+            Name
+          </td>
+          <td style="padding: 5px;">
+            Moblie no.
+          </td>
+          <td style="padding: 5px;">
+            Address
+          </td>
+          <td style="padding: 5px;">
+            Bill Amount
+          </td>
+          <td style="padding: 5px;">
+            Paid Amount
+          </td>
+          <td style="padding: 5px;">
+            Balane Amount
+          </td>
+        </tr>
+      </thead>
+  
+      <tr *ngFor="let product of billpagecontent">
+        <td style="padding: 5px;">{{product.billId}}</td>
+        <td style="padding: 5px;">{{product.customername}}</td>
+        <td style="padding: 5px;">{{product.mobileno}}</td>
+        <td style="padding: 5px;">{{product.address}}</td>
+        <td style="padding: 5px;">{{product.billValue}}</td>
+        <td style="padding: 5px;">{{product.paidamount}}</td>
+        <td style="padding: 5px;">{{product.balanceamount}}</td>
+      </tr>
+    </table>
+  
+ 
+  
+  </div>
+  {{datareceived}}
+  <ng-container #errornetwork *ngIf="!datareceived">
+    <div style="color:red">{{message}}</div>
+    </ng-container>

@@ -1,0 +1,9 @@
+<h2 mat-dialog-title  [class.success]="statusdata" [class.error]="!statusdata">
+<p *ngIf="statusdata; then success else error"></p>
+</h2>
+<ng-template #success>&#10003; Success</ng-template>
+<ng-template #error>! Error</ng-template>
+<div class="dialog-content">
+    <p>{{ data.message }}</p>
+</div>
+<button type="button" mat-dialog-close class="btn btn-primary">Ok</button>

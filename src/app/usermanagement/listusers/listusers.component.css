@@ -1,0 +1,15 @@
+table {
+    width: 90%;
+    margin-left:5%;
+    margin-right:5%;
+    margin-bottom:5%;
+  }
+  
+  th.mat-sort-header-sorted {
+    color: black;
+  }
+
+  mat-form-field{
+    margin-left:5%;
+    margin-top:5%;
+  }

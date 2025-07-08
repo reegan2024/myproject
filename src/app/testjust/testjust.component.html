@@ -1,0 +1,143 @@
+<p>Event binding for search</p>
+<p>Search <input type="text" (input)="enteredtext($event)"></p>
+<p>Promise sample</p>
+<button type="button" class="btn btn-primary" (click)="Promise()">Promise test</button>
+
+<button type="button" class="btn btn-primary" (click)="obserablecheck()">Obserable test</button>
+
+<button type="button" class="btn btn-primary" (click)="rxjsoperator()">RXJS operator test</button>
+
+<div id="out">sssssssssssssss</div>
+
+<div class="container mt-3" style="padding-left: 10pt;">
+    {{emaill.value}}
+    <h2>Stacked form</h2>
+    <form #mytestform="ngForm">
+      <div class="mb-3 mt-3">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" [id]="'email'" value="'eree'" placeholder="Enter email" name="email"  #emaill="ngModel" [(ngModel)]="this.email" email required>
+        <div *ngIf="emaill.invalid" [class]="haserrorClass">
+Enter valid email
+        </div>
+        <div *ngIf="emaill.valid" [ngClass]="successClass">
+            Email is correct
+                    </div>
+            
+      </div>
+      <div class="mb-3">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+      </div>
+      <div class="form-check mb-3">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" name="remember"> Remember me
+        </label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <mat-form-field appearance="fill">
+        <mat-label>Toppings</mat-label>
+        <mat-select [formControl]="toppings" multiple>
+          <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      {{toppings.value}}
+      </div>
+<div style="margin-top:20pt; bottom:10pt">Reactive form</div>
+<form [formGroup]="testform">
+    <input type="text" class="form-control" id="customername" placeholder="Customer Name"
+    formControlName="customername">
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+<!-- <div style="margin-left: 20rem;">
+<div *ngFor="let product of productlists" >
+
+    <p style="color: blue;">Product Name {{product.productname}}</p>
+
+    <div *ngFor="let productprice of product.price">
+        Product Price
+        <p>Small: {{productprice.small}}</p>
+        <p>Medium: {{productprice.medium}}</p>
+        <p>Large: {{productprice.large}}</p>
+    </div>
+    <p>Product GST {{product.gst}}</p>
+
+</div>
+</div>
+ -->
+<!-- working fine -->
+<!-- <div style="margin-left: 20px;">
+    <div *ngFor="let product of productlists" >
+        <p style="color: blue;">Product Name {{product.productname}}</p>
+        Product Price
+        <div *ngFor="let productprice of product.price">
+           {{productprice["small"]|json}}
+            <ng-container *ngIf="productprice | keyvalue as productPriceObj">
+               {{productPriceObj|json}}
+            <p>{{productPriceObj[0].key | titlecase}}: {{productPriceObj[0].value}}</p>
+          </ng-container>
+        </div>
+        <p>Product GST {{product.gst}}</p>
+    </div>
+  </div> -->
+
+  <h2>position: fixed;</h2>
+
+<p>An element with position: fixed; is positioned relative to the viewport, which means it always stays in the same place even if the page is scrolled:</p>
+
+<!-- confirmed to multiple style bindings -->
+<div class="fixed" [style.color]="'green'" [style.font-weight]="'bold'">
+This div element has position: fixed;
+</div>
+<!-- class binding works -->
+<div [class.forcolors]="'true'">
+  This div element has position: fixed;
+  </div>
+
+  <!-- class this also work, binding -->
+<div [class]="colors">
+  This div element has position: fixed;
+  </div>
+
+  <!-- for multiple classed need to use ngClass directive -->
+
+  <div [ngClass]="messagecolors">
+    This div element has position: fixed;
+    </div>
+  
+    <div [ngStyle]="stylecolors" id="result" *ngFor="let x of toppingList">
+    {{x}}
+      </div>
+
+<ng-template #first>
+  <div>first ng</div>
+</ng-template>
+{{testnamedata}}
+<input mat-input type="text" class="viewchild" #templatedom>
+
+
+<div #div1 style="width: 50%;" class="divone">
+Hi div one
+</div>
+
+<p #div1  style="width: 50%;">
+  Hi div two
+</p>
+<span #div1  style="width: 50%;">
+  Hi div two
+</span>
+  
+<input mat-input [(ngModel)]="testnamedata" type="text">
+
+<app-testchild [testname]="testnamedata" #mychild1>
+
+</app-testchild>
+<button type="button" class="btn btn-primary" (click)="test()">Submit</button>
+<!-- <app-test></app-test> -->
+
+<p>To test Event emmiter and Subject obserable</p>
+<input type="text" value="'Enter text'" [(ngModel)]="myemitterdata">
+<button type="button" class="btn btn-primary" (click)="sharingdataemitter()">Click</button>
+
+<app-testchild></app-testchild>

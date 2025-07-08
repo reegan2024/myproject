@@ -1,0 +1,68 @@
+
+<!-- <div>Asyn data: {{mydate$|async}}</div> -->
+<div id="billpagecontent" class="p-4" [class.hidden]="showContent">
+  <table style="width: 100%;">
+    <tr>
+      <td style="width: 60%;">Customer Name: {{billpagecontent.customername}}</td>
+      <td style="width: 40%; text-align: right;">Bill No: {{billpagecontent.billId}}</td>
+    </tr>
+    <tr>
+      <td style="width: 60%;">Customer Address: {{billpagecontent.address}}</td>
+      <td style="width: 40%; text-align: right;">Bill date: {{billpagecontent.billDate | date: 'dd/MM/yyyy'}}</td>
+    </tr>
+    <tr>
+      <td style="width: 60%;">Contact Number: {{billpagecontent.mobileno}}</td>
+      <td style="width: 40%;"></td>
+    </tr>
+  </table>
+  <table class="table" style="margin-top: 20px; width:fit-content;">
+
+    <thead>
+      <tr>
+        <td style="width:40%">
+          Product Name
+        </td>
+        <td style="width:15%; text-align: right;">
+          Quantity
+        </td>
+        <td style="width:15%; text-align: right;">
+          Price
+        </td>
+        <td style="width:15%; text-align: right;">
+          Gst
+        </td>
+      </tr>
+    </thead>
+
+    <tr *ngFor="let product of billpagecontent.productdetails">
+      <td>{{product.productname}}</td>
+      <td style="text-align: right;">{{product.quantit}}</td>
+      <td style="text-align: right;">{{product.price}}</td>
+      <td style="text-align: right;">{{product.gst}}</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td style="text-align: right;"><b>Total</b></td>
+      <td style="text-align: right;">{{billpagecontent.totalprice}}</td>
+      <td style="text-align: right;">{{billpagecontent.totalgst}}</td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: right;"><b>Total Bill (round off)</b></td>
+      <td style="text-align: right;">Rs. {{billpagecontent.billValue}}</td>
+      <td style="text-align: right;"></td>
+    </tr>
+  </table>
+
+<table class="table" style="margin-top: 40pt; margin-bottom: 0;" style="border: 1px solid black;">
+  <tr>
+    <td style="text-align: center;" colspan="3">Customer Payment details</td>
+  </tr>
+  <tr>
+    <td>Fully paid: {{billpagecontent.fullypaid}}</td>
+    <td style="text-align: right;"><b>Paid amount:</b> Rs. {{billpagecontent.paidamount}}</td>
+    <td style="text-align: right;"><b>Balance amount:</b> Rs. {{billpagecontent.balanceamount}}</td>
+  </tr>
+
+</table>
+
+</div>

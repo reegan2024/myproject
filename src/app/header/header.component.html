@@ -1,0 +1,66 @@
+<div class="body">
+  <div class="container-fluid p-2 bg-primary text-white text-center">
+    <p><span class="material-symbols-outlined" style="float: right; margin-top: 30px;margin-right: 5px;">
+      person
+    </span></p>
+    <h1 style="margin-top: 8pt;">RR Mill Food Products & Cattle Feeds</h1>
+    <p ><span class="" style="float: right;">
+      Hi {{user}}
+    </span></p> <p>Theruvukaddai</p>
+    <p>is authenicated = {{this._authen.isAuthenticated()}}</p>
+    
+    <nav>
+      <ul class="nav justify-content-end">
+        <ng-container *ngIf="this._authen.isAuthenticated();then Authenticated; else notAuthenticated">
+
+        </ng-container>
+        <ng-template #notAuthenticated>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login" style="color:white">Login</a>
+          </li>
+        </ng-template>
+        <ng-template #Authenticated>
+          <li class="nav-item">
+            <a class="nav-link" routerLink style="color:white" (click)="logout()">Logout</a>
+          </li>
+          </ng-template>
+      </ul>
+    </nav>
+  </div>
+  <nav class="navbar  nav-pills navbar-expand-sm" style="padding:5px; border-bottom-style: groove; background-color: green;">
+
+    <div class="container-fluid" style="display: block;">
+      <!-- Links -->
+
+      <ul class="nav  justify-content-center">
+        <li class="nav-item" style="margin-left: 10px;" >
+          <a class="nav-link active" data-bs-toggle="pill" style="color:white" routerLink="/"  ><b>About Us</b></a>
+        </li>
+        <li class="nav-item" style="margin-left: 10px;" >
+          <a class="nav-link" data-bs-toggle="pill" style="color:white" routerLink="/products" ><b>Products</b></a>
+        </li>
+        <li class="nav-item" style="margin-left: 10px;">
+          <a class="nav-link" data-bs-toggle="pill" style="color:white" routerLink="/billing"><b>Billing</b></a>
+        </li>
+        <li class="nav-item" style="margin-left: 10px;">
+          <a class="nav-link" data-bs-toggle="pill" style="color:white" routerLink="/ehtml"><b>Ehtml</b></a>
+        </li>
+        <li class="nav-item" style="margin-left: 10px;">
+          <a class="nav-link" data-bs-toggle="pill" style="color:white" routerLink="/billing"><b>Contact</b></a>
+        </li>
+        <li class="nav-item" style="margin-left: 10px;">
+          <a class="nav-link" data-bs-toggle="pill" style="color:white" routerLink="/listuser"><b>Usermanagement</b></a>
+        </li>
+        <li class="nav-item" style="margin-left: 10px;">
+          <a class="nav-link" data-bs-toggle="pill" style="color:white" routerLink="/billmanagement"><b>Billmanagement</b></a>
+        </li>
+        <li class="nav-item" style="margin-left: 10px;">
+          <a class="nav-link" data-bs-toggle="pill" style="color:white" routerLink="/productmanagement"><b>Productmanagement</b></a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+
+
+</div>

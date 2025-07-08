@@ -1,0 +1,67 @@
+<mat-card>
+  <mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+  </mat-form-field>
+  <button mat-raised-button color="primary" class="mat-elevation-z8" style="float:right" (click)="openproductpopup('','Add')">Add Product (+)</button>
+  <table mat-table [dataSource]="dataSource" matSort  class="mat-elevation-z8">
+   
+    
+    <!-- Position Column -->
+    <ng-container matColumnDef="productId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by productId">
+        No.
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.productId}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="productName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by productName">
+        productName
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="productQuantity">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by productQuantity">
+        productQuantity
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.productQuantity}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="productPrice">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by productPrice">
+        Price
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.productPrice}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="gst">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by gst">
+        Gst
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.gst}} </td>
+    </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef sortActionDescription="">
+          Action
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <div class="button-row">
+  <button mat-raised-button color="primary" matTooltip="Edit Product" (click)="openproductpopup(element,'Edit')">Edit</button>
+  <button mat-raised-button color="warn" matTooltip="Delete the Product" (click)="openproductpopup(element,'Delete')">Delete</button>
+  </div>
+        </td>
+      </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+</mat-card>

@@ -1,0 +1,6 @@
+::ng-deep .cdk-overlay-pane {
+    
+min-height: auto;
+max-height: 150px!important;
+}
+

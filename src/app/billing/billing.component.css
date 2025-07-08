@@ -1,0 +1,41 @@
+.form-control.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+
+.form-control.ng-invalid.ng-untouched.ng-submitted {
+    border: 1px solid red;
+}
+
+.reg-right {
+    padding: 5rem 5%;
+    max-height: none;
+    overflow-y:visible ;
+}
+
+.form-control1 {
+    display: inline;
+    align:right;
+    width: 60%;
+    
+}
+
+::ng-deep .cdk-overlay-pane {
+    
+    min-height: auto;
+    max-height: 150px!important;
+    }
+    
+    .login-right {
+        background: #83648f;
+        padding: 5rem 5%;
+    }
+
+    .mat-green {
+        color: white;
+        background-color: blue;
+      }
+
+      .mat-radio-button ~ .mat-radio-button {
+        margin-left: 30px;
+      }
+      

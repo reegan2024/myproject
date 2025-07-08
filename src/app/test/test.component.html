@@ -1,0 +1,152 @@
+
+
+<form [formGroup]="productFormarray" (ngSubmit)="onSubmit()">
+    <div class="reg-right">
+      <div class="formGroup">
+        <label for="customername" class="form-label">Customer Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="customername"
+          placeholder="Customer Name"
+          formControlName="customername"
+        />
+      </div>
+      <div class="formGroup" formArrayName="productdetails">
+        <div class="table-responsive">
+          <table class="table table-bordered" style="margin-top: 20px">
+            <thead>
+              <tr>
+                <td style="width: 40%">Product Name</td>
+                <td style="width: 15%">Quantity</td>
+                <td style="width: 15%">Price</td>
+                <td style="width: 15%">Gst</td>
+                <td></td>
+              </tr>
+            </thead>
+            <tr
+              *ngFor="let product of productdetailsarray.controls; let i=index"
+              [formGroupName]="i"
+            >
+              <td>
+                <div class="formGroup">
+                  <input
+                    formControlName="productname"
+                    matInput
+                    #input
+                    type="text"
+                    [matAutocomplete]="auto"
+                    class="form-control"
+                    (input)="onProductChange($event,i)"
+                    (click)="clicked(input)"
+                    (input)="performFiltering(input)"
+                  
+                    (keyup.enter)="onEnter(input)"
+                  />
+                  <mat-autocomplete
+                    #auto="matAutocomplete"
+                    (optionSelected)="onProductChange1($event, i)"
+                    >
+                    <mat-option
+                      *ngFor="let product of filteroptions | async"
+                      [value]="product.productname"
+                    >
+                      {{product.productname}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </div>
+              </td>
+              <td>
+                <div class="formGroup">
+                  <select
+                    #mySelect
+                    class="form-control"
+                    [id]="'quantit_' + i"
+                    [name]="'quantit_' + i"
+                    formControlName="quantit"
+                    (change)="onQuantityChange(mySelect.value, i)"
+                  >
+                    <option
+                      *ngFor="let quantity of quantitylist"
+                      [value]="quantity"
+                    >
+                      {{quantity}}
+                    </option>
+                  </select>
+                </div>
+              </td>
+              <td>
+                <div class="formGroup">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [id]="'price_' + i"
+                    [name]="'price_' + i"
+                    formControlName="price"
+                    placeholder="Price "
+                    readonly
+                  />
+                </div>
+              </td>
+              <td>
+                <div class="formGroup">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="gst"
+                    formControlName="gst"
+                    placeholder="Gst"
+                    name="gst"
+                    readonly
+                  />
+                </div>
+              </td>
+              <td>
+                <a
+                  type="button"
+                  class="form-control btn btn-primary"
+                  style="background-color: red"
+                  (click)="removeProduct(i)"
+                  >Remove (-)</a
+                >
+              </td>
+            </tr>
+          </table>
+        </div>
+        <a
+          type="button"
+          class="btn btn-secondary"
+          style="background-color: green"
+          (click)="addNewProduct()"
+          >Add(+)</a
+        >
+        <br />
+      </div>
+      <br />
+      <br />
+      <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-6">
+          <div class="formGroup">
+            <label for="totalprice" class="form-label" style="margin-top: 10pt"
+              >Total Product Price</label
+            >
+            <input
+              type="text"
+              class="form-control form-control1"
+              id="totalprice"
+              formControlName="totalprice"
+              placeholder="totalprice"
+              name="totalprice"
+              style="margin-left: 20pt; float: right"
+              readonly
+            />
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+  
+    
+  

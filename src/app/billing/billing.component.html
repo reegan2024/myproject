@@ -1,0 +1,260 @@
+<!--  <div class="col-md-9" style="background-color: aquamarine;" id="bil"> -->
+<!-- <p>{{pFormarray.submitted}}</p>
+<p>{{productFormarray.untouched}}</p>
+<p>{{productlists|json}}</p>
+<p>{{billcontent|json}}</p>
+ -->
+<!-- <p style="margin-top: 10px;"></p>
+ -->
+<form [formGroup]="productFormarray" #pFormarray="ngForm">
+  <div class="reg-right">
+    <div class="formGroup">
+      <label for="customername" class="form-label">Customer Name</label>
+      <input type="text" class="form-control" id="customername" placeholder="Customer Name"
+        formControlName="customername" pattern="[a-zA-Z\s]+">
+      <div style="height: 4px; display: block;">
+
+        <div
+          *ngIf="(pFormarray.submitted && productFormarray.get('customername').untouched) ||  productFormarray.get('customername').touched "
+          style="font-size: 10pt; margin-top: 2pt; color:red;">
+          <div *ngIf="productFormarray.get('customername').errors?.['required']">Enter Name</div>
+        </div>
+        <div *ngIf="productFormarray.get('customername').invalid" style="font-size: 10pt; margin-top: 2pt; color:red;">
+          <div *ngIf="productFormarray.get('customername').errors?.['pattern']">Enter valid Name</div>
+        </div>
+      </div>
+
+      <!-- <div
+                *ngIf="productFormarray.get('customername').errors?.['required'] && productFormarray.get('customername').touched">
+                <span style="font-size: 10pt; color:red">Enter name</span>
+              </div>
+              <div
+                *ngIf="productFormarray.get('customername').errors?.['pattern'] && productFormarray.get('customername').touched">
+                <span style="font-size: 10pt; color:red">Enter valid name</span>
+              </div> -->
+    </div>
+    <br />
+    <div class="formGroup">
+      <label for="mobilename" class="form-label">Mobile number</label>
+      <input type="text" class="form-control" id="mobileno" placeholder="Mobile No" formControlName="mobileno"
+        pattern="[0-9]{10}" required>
+      <div
+        *ngIf="(pFormarray.submitted && productFormarray.get('mobileno').untouched) ||  productFormarray.get('mobileno').touched "
+        style="font-size: 10pt; margin-top: 2pt; color:red;">
+        <div *ngIf="productFormarray.get('mobileno').errors?.['required']">Enter Mobile Number</div>
+      </div>
+      <div *ngIf="productFormarray.get('mobileno').invalid" style="font-size: 10pt; margin-top: 2pt; color:red;">
+        <div *ngIf="productFormarray.get('mobileno').errors?.['pattern']">Enter valid Mobile Number
+
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="formGroup">
+      <label for="address" class="form-label">Address</label>
+      <input type="text" class="form-control" id="address" placeholder="Address" formControlName="address">
+    </div>
+    <!--           <div
+                *ngIf="productFormarray.get('mobileno').errors?.['required'] && productFormarray.get('mobileno').touched">
+                <span style="font-size: 10pt; color:red">Enter mobile no</span>
+              </div>
+              <div
+                *ngIf="productFormarray.get('mobileno').errors?.['pattern'] && productFormarray.get('mobileno').touched">
+                <span style="font-size: 10pt; color:red">Mobile no should 10 digit</span>
+              </div>
+            </div>
+ -->
+    <div class="formGroup" class="formGroup" formArrayName="productdetails">
+      <div class="table-responsive">
+        <table class="table table-bordered" style="margin-top: 20px;">
+
+          <thead>
+            <tr>
+              <td style="width:40%">
+                Product Name
+              </td>
+              <td style="width:15%">
+                Quantity
+              </td>
+              <td style="width:15%">
+                Price
+              </td>
+              <td style="width:15%">
+                Gst
+              </td>
+              <td>
+              </td>
+            </tr>
+          </thead>
+
+          <tr *ngFor="let product of productdetailsarray.controls; let i=index" [formGroupName]="i">
+            <td>
+              <div class="formGroup" style="height: 70px; margin-top: 10pt;">
+                
+                <input formControlName="productname" #input type="text" [matAutocomplete]="auto"
+                  class="form-control" (input)="onProductChange($event,i)" (click)="clicked(input)"
+                  (input)="performFiltering(input)" (keyup.enter)="onEnter(input)">
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onProductChange1($event, i)">
+                  <mat-option *ngFor="let product of filteroptions | async" [value]="product.productName">
+                    {{product.productName}}
+                  </mat-option>
+                </mat-autocomplete>
+                <!--                 <div
+                  *ngIf="productdetailsarray.at(i).get('productname')?.errors?.['required'] && productdetailsarray.at(i).get('productname')?.touched">
+                  <span style="font-size: 10pt; color:red">Enter product name</span>
+                </div>
+ -->
+                <div
+                  *ngIf="productdetailsarray.at(i).get('productname')?.errors?.['productnotavailable'] && productdetailsarray.at(i).get('productname')?.touched">
+                  <span style="font-size: 10pt; color:red">Product is not valid</span>
+                </div>
+                <div style="height: 4px; display: block;">
+
+                  <div *ngIf="productdetailsarray.at(i).get('productname')?.touched "
+                    style="font-size: 10pt; margin-top: 2pt; color:red;">
+                    <div *ngIf="productdetailsarray.at(i).get('productname')?.errors?.['required']">Enter Product Name
+                    </div>
+                  </div>
+                  <div *ngIf="productdetailsarray.at(i).get('productname')?.invalid"
+                    style="font-size: 10pt; margin-top: 2pt; color:red;">
+                    <div *ngIf="productdetailsarray.at(i).get('productname')?.errors?.['pattern']">Enter valid Name
+                    </div>
+                  </div>
+                </div>
+
+                <!--                 <div *ngIf="pFormarray.submitted && productdetailsarray.at(i).get('productname')?.untouched"
+                  style="font-size: 10pt; margin-top: 2pt; color:red;">Enter Product Name
+                </div>
+ -->
+
+              </div>
+            </td>
+            <td>
+              <div class="formGroup">
+                <select #mySelect class="form-control" [id]="'quantit_' + i" [name]="'quantit_' + i"
+                  formControlName="quantit" (change)="onQuantityChange(mySelect.value, i)">
+                  <option *ngFor="let quantity of quantitylist" [value]="quantity">
+                    {{quantity}}
+                  </option>
+                </select>
+              </div>
+            </td>
+            <td>
+              <div class="formGroup">
+                <input type="text" class="form-control" id="price" formControlName="price" placeholder="Price " readonly
+                  name="price">
+              </div>
+            </td>
+            <td>
+              <div class="formGroup">
+                <input type="text" class="form-control" id="gst" formControlName="gst" placeholder="Gst" name="gst"
+                  readonly>
+              </div>
+            </td>
+            <td>
+              <a type="button" class="form-control btn btn-primary" style="background-color: red;"
+                (click)="removeProduct(i)">Remove (-)</a>
+            </td>
+
+          </tr>
+        </table>
+      </div>
+      <a type="button" class="btn btn-secondary" style="background-color: green;" (click)="addNewProduct()">Add(+)</a>
+      <br />
+    </div>
+    <br />
+    <br />
+
+    <div class="row">
+      <div class="col-md-6">
+      </div>
+      <div class="col-md-6">
+        <div class="formGroup">
+          <label for="totalprice" class="form-label" style="margin-top: 10pt;">Total Product Price</label>
+          <input type="text" class="form-control form-control1" id="totalprice" formControlName="totalprice"
+            placeholder="totalprice" name="totalprice" style="margin-left: 20pt; float:right" readonly>
+        </div>
+        <div class="formGroup" style="margin-top: 10pt;">
+          <label for="totalgst" class="form-label" style="margin-top: 20pt;">Total GST</label>
+          <input type="text" class="form-control form-control1" id="totalgst" formControlName="totalgst"
+            placeholder="totalgst" name="totalgst" style="margin-left: 20pt; margin-top: 10pt; float:right" readonly>
+        </div>
+        <div class="formGroup" style="margin-top: 10pt;">
+          <h3>
+            <label for="totalbill" class="form-label" style="margin-top: 20pt;"><b>Total Bill</b></label>
+            <input type="text" class="form-control form-control1" id="billValue" formControlName="billValue"
+              placeholder="billValue" name="gst"
+              style="margin-left: 20pt; margin-top: 10pt; float:right; font-size:18px" readonly>
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="mb-4 mt-4">
+<hr/>
+      <div class="row">
+        <mat-radio-group aria-label="Select an option" formControlName="fullypaid">
+          <mat-radio-button [value]="true" [checked]="true" (click)="onClickfullypaid()">Fully Paid</mat-radio-button>
+          <mat-radio-button [value]="false">Partially Paid</mat-radio-button>
+        </mat-radio-group>
+      <div class="col-md-6"  style="margin-top: 10px;">
+          <div class="formGroup" [hidden]="fullypaidvalue" style="margin-left: 40px;">
+            <label for="paidamount" class="form-label" style="margin-top: 10pt;">Paid Amount</label>
+            <input type="text" class="form-control form-control1" (input)="onPaidChange($event)" id="paidamount" formControlName="paidamount"
+              placeholder="paidamount" name="paidamount" style="margin-left: 20pt;" [required]="fullypaidvalue==false">
+              <div
+              *ngIf="(productFormarray.get('fullypaid').value ==false) && (productFormarray.get('paidamount').touched)"
+              style="font-size: 10pt; margin-top: 2pt; color:red;">
+              
+              <div *ngIf="productFormarray.get('paidamount').errors?.['required']" style="margin-left: 40pt;">Enter Paid value</div>
+            </div>
+          </div>
+<!--         <div *ngIf="productFormarray.get('mobileno').invalid" style="font-size: 10pt; margin-top: 2pt; color:red;">
+          <div *ngIf="productFormarray.get('mobileno').errors?.['pattern']">Enter valid Mobile Number
+  
+          </div>
+        </div>
+ -->        </div>
+        <div class="col-md-6"  style="margin-top: 10px;">
+          <div class="formGroup" [hidden]="fullypaidvalue">
+            <label for="balanceamount" class="form-label" style="margin-top: 10pt;">Balance amount</label>
+            <input type="text" class="form-control form-control1" id="balanceamount" formControlName="balanceamount" placeholder="balanceamount" name="balanceamount" style="margin-left: 20pt;" readonly>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+
+
+    <!-- <div class="col-md-12 mb-4">
+              <label for="file" class="form-upload mb-2">Vaccination certificate</label><span
+                style="font-size: 10.5pt; margin-top: 2pt; color:red;"> *</span>
+              <input formControlName="file" id="file" type="file" class="form-control" (change)="onFileChange($event)">
+
+              <div style="font-size: 10.5pt; margin-top: 2pt; color:#6b6969;">
+                <div>(Max file size should not exceed 5MB & file format should be Excel,Pdf and JPG )</div>
+              </div>
+              <div *ngIf="form.submitted && myGroup.untouched" style="font-size: 10.5pt; margin-top: 2pt; color:red;">
+                    <div>Vaccination Certificate is required</div>
+                  </div>
+                   <div style="font-size: 10.5pt; margin-top: 2pt; color:red;">
+                     {{message}}
+                   </div> 
+            </div> -->
+
+    <button mat-raised-button color="green" style="margin-top: 10px;" type="submit" class="btn btn-primary"
+      (click)="onSubmit(productFormarray.valid)">Submit</button>
+  </div>
+</form>
+<!-- <p>{{productFormarray.valid}}</p>
+ -->
+<!-- </div> -->
+<!-- <p>{{productdetailsarray.at(0).get('productname')?.value|json}}</p> -->
+<!-- <p>{{this.productFormarray.value | json}}</p> -->
+<!--   <p>{{this.productdetailsarray.value | json}}</p> -->
+
+<app-billpage></app-billpage>
