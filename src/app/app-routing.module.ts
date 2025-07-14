@@ -20,9 +20,9 @@ import { BfoodsComponent } from './products/bfoods/bfoods.component';
 import { AnfoodsComponent } from './products/anfoods/anfoods.component';
 
 const routes: Routes = [
-  {path:'', component:TestjustComponent},
-/*   {path:'', component:IntroductionComponent},
- */  {path:'intro', component:IntroductionComponent},
+  /* {path:'', component:TestjustComponent}, */
+  {path:'', component:IntroductionComponent},
+  {path:'intro', component:IntroductionComponent},
   {path:'login', component:LoginComponent},
   {path:'header', component:HeaderComponent},
   /* {path:'products', component:HomepageComponent}, */

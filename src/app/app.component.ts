@@ -11,5 +11,5 @@ export class AppComponent  implements OnInit{
   }
   title = 'RRMILL';
   appbody:boolean=false;
-  uname:string="name is reegan";
+  uname:string="";
 }

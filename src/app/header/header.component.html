@@ -1,14 +1,14 @@
-<div class="body">
-  <div class="container-fluid p-2 bg-primary text-white text-center">
+<div class="body" style="height: 30%;">
+  <div class="container-fluid p-2 bg-primary text-white text-center" >
     <p><span class="material-symbols-outlined" style="float: right; margin-top: 30px;margin-right: 5px;">
       person
     </span></p>
-    <h1 style="margin-top: 8pt;">RR Mill Food Products & Cattle Feeds</h1>
+    <h1 style="margin-top: 8pt;">MY Project</h1>
     <p ><span class="" style="float: right;">
       Hi {{user}}
     </span></p> <p>Theruvukaddai</p>
-    <p>is authenicated = {{this._authen.isAuthenticated()}}</p>
-    
+<!--     <p>is authenicated = {{this._authen.isAuthenticated()}}</p>
+ -->    
     <nav>
       <ul class="nav justify-content-end">
         <ng-container *ngIf="this._authen.isAuthenticated();then Authenticated; else notAuthenticated">
@@ -59,8 +59,5 @@
         </li>
       </ul>
     </div>
-
   </nav>
-
-
 </div>

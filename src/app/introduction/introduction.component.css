@@ -1,4 +1,7 @@
 .login-right {
     background: #83648f;
-    padding: 5rem 5%;
+    padding: 5rem 10%;
+    overflow-y:auto;
+    height:50%;
+
 }

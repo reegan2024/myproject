@@ -1,7 +1,7 @@
 .login-right {
     background: #83648f;
 
-    overflow-y: scroll
+    overflow-y: auto
 }
 /* .btn-white, .btn-white:hover{
 	background: #fff;
@@ -10,3 +10,4 @@
 	padding: .45rem 1.5rem;
 	border-radius: 6px;
 } */
+

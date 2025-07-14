@@ -19,3 +19,8 @@
 {
   background-color: greenyellow;
 }
+
+:host {
+  display: block; /* Important for applying width/height correctly */
+  height: 30%; /* Set a fixed height */
+}
